@@ -1,0 +1,573 @@
+/************************************ Formulaire d'informations du pokémon *****************************************/
+
+strong{
+    font-size: 1.5em;
+    text-align: center;
+    display: block;
+    padding: 1rem;
+    margin-bottom: 15px;
+}
+form > input {
+    width: 100%;
+    padding:0;
+}
+fieldset {
+    width: 100%;
+    margin:0;
+    padding: 5px 0px;
+}
+fieldset div {
+    width: 100px;
+}
+@media (min-width: 600px){
+    form {
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 1em;
+        align-items: stretch;
+    
+        display: grid;
+        grid-template:  ".   label1           input1            ."      2rem
+                        ".   label2           input2            ."      auto
+                        ".   label3           input3            ."      2rem
+                        ".   label4           input4            ."      2rem
+                        ".   label5           input5            ."      2rem
+                        ".   label6           input6            ."      2rem
+                        ".   lien             boutons           ."       auto/ 1fr 1fr 1fr 1fr;
+   
+    } 
+
+    .label1 {
+        grid-area: label1;
+    }
+    
+    .input1 {
+        grid-area: input1;
+    }
+    
+    .label2 {
+        grid-area: label2;
+    }
+    
+    .input2 {
+        grid-area: input2;
+    }
+    
+    .label3 {
+        grid-area: label3;
+    }
+    
+    .input3 {
+        grid-area: input3;
+    }
+    
+    .label4 {
+        grid-area: label4;
+    }
+    
+    .input4 {
+        grid-area: input4;
+    }
+    
+    .label5 {
+        grid-area: label5;
+    }
+    
+    .input5 {
+        grid-area: input5;
+    }
+    
+    .label6 {
+        grid-area: label6;
+    }
+    
+    .input6 {
+        grid-area: input6;
+    }
+
+    .lien{
+        grid-area: lien;
+        justify-self: start;
+    }
+
+    .boutons{
+        grid-area: boutons;
+        justify-self: end;
+    }
+}
+
+fieldset{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+}
+
+.cancel{
+    background-color: darkred;
+    padding: 10px 10px;
+    border-color: bisque;
+    border-radius: 5px;
+    border-width: 5px;
+}
+
+.cancel a{
+    color: bisque;
+    text-decoration: none;
+    font-size: 14.5px;
+}
+
+.submit_pokemon{
+    color: white;
+    background-color: rgb(5, 5, 93);
+    padding: 10px 20px;
+    border-color: bisque;
+    border-radius: 5px;
+    border-width: 5px;
+}
+
+.reload_pokemon{
+    color: white;
+    background-color: rgb(5, 5, 93);
+    padding: 10px 20px;
+    border-color: bisque;
+    border-radius: 5px;
+    border-width: 5px;
+}
+
+.error {
+    border: 2px solid red;
+}
+
+.modal {
+    display: none; /* Caché */
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin-top: 200px; 
+    margin-left: 350px; 
+    margin-right: 0px;
+    margin-bottom: 0px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; 
+    text-align: center;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    margin-bottom: 200px;
+    padding-bottom: 500px;
+}
+
+.modal-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #5a5aff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.modal-button:hover {
+    background-color: #4040ff;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.modal-buttons {
+    margin-top: 10px;
+}
+
+.modal-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+}
+
+.modal-button:hover {
+    opacity: 0.8;
+}
+
+/************************************** Carte d'identification du pokémon *****************************************/
+
+.card {
+    transition: 0.3s;
+    width: 25%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    margin: 20px auto;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    border: 2px solid darkred;
+    min-width: 150px;
+    position: relative; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between;
+    height: 100%; 
+}
+
+.card li {
+    flex: 1;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+}
+
+/* Styles pour chaque type de Pokémon */
+.card.normal { border-color: #A8A77A; color: #A8A77A; }
+.card.normal:hover { background-color: #A8A77A; color: white;}
+
+.card.fire { border-color: #EE8130; color: #EE8130; }
+.card.fire:hover { background-color: #EE8130; color: white;}
+
+.card.water { border-color: #6390F0; color: #6390F0; }
+.card.water:hover { background-color: #6390F0; color: white;}
+
+.card.electric { border-color: #F7D02C; color: #F7D02C; }
+.card.electric:hover { background-color: #F7D02C; color: white;}
+
+.card.grass { border-color: #7AC74C; color: #7AC74C; }
+.card.grass:hover { background-color: #7AC74C; color: white;}
+
+.card.ice { border-color: #96D9D6; color: #96D9D6; }
+.card.ice:hover { background-color: #96D9D6; color: white;}
+
+.card.fighting { border-color: #C22E28; color: #C22E28; }
+.card.fighting:hover { background-color: #C22E28; color: white;}
+
+.card.poison { border-color: #A33EA1; color: #A33EA1; }
+.card.poison:hover { background-color: #A33EA1; color: white;}
+
+.card.ground { border-color: #E2BF65; color: #E2BF65; }
+.card.ground:hover { background-color: #E2BF65; color: white;}
+
+.card.flying { border-color: #A98FF3; color: #A98FF3; }
+.card.flying:hover { background-color: #A98FF3; color: white;}
+
+.card.psychic { border-color: #F95587; color: #F95587; }
+.card.psychic:hover { background-color: #F95587; color: white;}
+
+.card.bug { border-color: #A6B91A; color: #A6B91A; }
+.card.bug:hover { background-color: #A6B91A; color: white;}
+
+.card.rock { border-color: #B6A136; color: #B6A136; }
+.card.rock:hover { background-color: #B6A136; color: white;}
+
+.card.ghost { border-color: #735797; color: #735797; }
+.card.ghost:hover { background-color: #735797; color: white;}
+
+.card.dragon { border-color: #6F35FC; color: #6F35FC; }
+.card.dragon:hover { background-color: #6F35FC; color: white;}
+
+.card.dark { border-color: #705746; color: #705746; }
+.card.dark:hover { background-color: #705746; color: white;}
+
+.card.steel { border-color: #B7B7CE; color: #B7B7CE; }
+.card.steel:hover { background-color: #B7B7CE; color: white;}
+
+.card.fairy { border-color: #D685AD; color: #D685AD; }
+.card.fairy:hover { background-color: #D685AD; color: white;}
+
+.card img {
+    border: 2px solid rgb(46, 4, 4);
+    border-radius: 5px;
+    display: block;
+    margin: auto;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.card img:hover {
+    border-color: white;
+}
+
+.return {
+    font-size: 14px;
+    color: white;
+    background-color: rgb(5, 5, 93);
+    padding: 10px 20px;
+    text-align: center;
+    border-color: bisque;
+    border-radius: 5px;
+    border-width: 5px;
+}
+
+.delete-button {
+    position: absolute; 
+    bottom: 10px; 
+    right: 10px; 
+    padding: 10px 20px;
+    background-color: darkred; 
+    color: white;
+    border: 2px solid bisque; 
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #ff0000; 
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.modal-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-button:hover {
+    background-color: #45a049;
+}
+
+/***************************************** Page d'accueil du Pokédex ***********************************************/
+
+.body.index {
+    display: grid;
+    grid-template:
+        "aside header" 80px
+        "aside main" 1fr / 1fr 9fr;
+    grid-gap: 10px;
+    position: relative; 
+}
+
+.body.index header {
+    grid-area: header;
+    color: black;
+    text-align: center;
+    border: 0.2em solid rgb(216, 170, 114);
+    padding-left: 10px;
+    padding-right: 8px;
+}
+
+header:hover {
+    box-shadow: 0 0.5px 10px 0px rgb(216, 170, 114);
+    transition: 0.3s;
+}
+
+.body.index .main {
+    grid-area: main;
+    display: flex;
+    justify-content: center;
+}
+
+.body.index .aside {
+    grid-area: aside;
+    border: 0.2em solid rgb(216, 170, 114);
+    padding: 10px;
+}
+
+aside {
+    border: 0.2em solid rgb(216, 170, 114);
+    padding: 10px;
+}
+
+aside:hover {
+    box-shadow: 0 0.5px 10px 0px rgb(216, 170, 114);
+    transition: 0.3s;
+    max-width: 300px;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+aside ul li {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+aside a {
+    color: black;
+    text-decoration: none;
+}
+
+aside a:hover {
+    box-shadow: 0 0.5px 10px 0px rgb(255, 77, 0);
+    transition: 0.3s;
+    max-width: 500px;
+}
+
+main article {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.square {
+    flex: 1 0 calc(20% - 20px);
+    margin: 10px;
+    border: 2px solid rgb(207, 216, 238);
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; 
+}
+
+.square:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+}
+
+.square a {
+    text-align: center;
+    display: block;
+    color: black;
+    text-decoration: none;
+}
+
+.description {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    text-align: center;
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.description li {
+    text-align: center;
+    padding: 5px 0;
+}
+
+.description li:hover {
+    transition: 0.3s;
+    color: rgb(5, 5, 93);
+    text-shadow: 2px 2px 5px bisque;
+    background-color: bisque;
+}
+
+.square a:hover {
+    transition: 0.3s;
+    color: rgb(5, 5, 93);
+    text-shadow: 2px 2px 5px bisque;
+    background-color: bisque;
+}
+
+main article ul li img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+.form {
+    position: fixed;
+    bottom: 0px;
+    left: 20px;
+    padding: 8px 20px;
+    font-size: 14px;
+    color: white;
+    background-color: rgb(5, 5, 93);
+    text-align: center;
+    border-color: bisque;
+    border-radius: 5px;
+    border-width: 5px;
+}
+
+.form:hover {
+    background-color: rgb(0, 0, 80);
+}
+
+.form a{
+    color: white;
+    text-decoration: none;
+}
